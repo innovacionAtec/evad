@@ -53,8 +53,8 @@ return array(
 		//EVAD
 		'db'=>array(
         			'connectionString' => 'pgsql:host=localhost;dbname=evad',
-	        		'username' => 'cmibd',
-	        		'password' => '123',
+	        		'username' => 'postgres',
+	        		'password' => 'patz32',
         			'charset' => 'utf8',
         			'class' => 'CDbConnection'
 		),
