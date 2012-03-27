@@ -7,7 +7,8 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'EVAD',
+	'language'=>'es',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -36,6 +37,16 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+            // JQUERY
+            
+            'clientScript'=>array(
+                'scriptMap'=>array(
+                    'jquery.js'=>false,
+                    'jquery.min.js'=>false,
+                )
+            ),
+            
+            
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -50,32 +61,24 @@ return array(
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
-		//EVAD
+		// uncomment the following to use a MySQL database
 		'db'=>array(
-<<<<<<< HEAD
-        			'connectionString' => 'pgsql:host=localhost;dbname=evad',
-	        		'username' => 'postgres',
-	        		'password' => 'patz32',
-        			'charset' => 'utf8',
-=======
-        			'connectionString' => '',
-	        		'username' => '',
-	        		'password' => '',
-        			'charset' => '',
->>>>>>> innov/desarrollo
-        			'class' => 'CDbConnection'
+			'connectionString' => 'pgsql:host=localhost;dbname=evad',
+	        	'emulatePrepare' => true,
+		        'username' => 'postgres',
+        	    	'password' => 'patz32',
+        	    	'charset' => 'utf8',
 		),
 		//HUGO
-		'db2'=>array(
-			'class' => 'CDbConnection',
-			'connectionString' => '',
-			'emulatePrepare' => true,
-			'username' => '',
-			'password' => '',
-			'charset' => '',
+        	'db2'=>array(
+        	    	'class' => 'CDbConnection',
+        	   	'connectionString' => 'pgsql:host=10.12.0.25;dbname=biblioteca',
+        	     	'emulatePrepare' => true,
+        	  	'username' => 'jorge',
+        	    	'password' => 'real2375',
+        	   	'charset' => 'utf8',
 		),
-		// uncomment the following to use a MySQL database
-		/*
+                /*
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
 			'emulatePrepare' => true,
