@@ -52,20 +52,20 @@ return array(
 		),
 		//EVAD
 		'db'=>array(
-        			'connectionString' => 'pgsql:host=localhost;dbname=evad',
-	        		'username' => 'cmibd',
-	        		'password' => '123',
-        			'charset' => 'utf8',
+        			'connectionString' => '',
+	        		'username' => '',
+	        		'password' => '',
+        			'charset' => '',
         			'class' => 'CDbConnection'
 		),
 		//HUGO
 		'db2'=>array(
 			'class' => 'CDbConnection',
-			'connectionString' => 'pgsql:host=10.12.0.25;dbname=biblioteca',
+			'connectionString' => '',
 			'emulatePrepare' => true,
-			'username' => 'jorge',
-			'password' => 'real2375',
-			'charset' => 'utf8',
+			'username' => '',
+			'password' => '',
+			'charset' => '',
 		),
 		// uncomment the following to use a MySQL database
 		/*
