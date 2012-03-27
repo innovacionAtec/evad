@@ -1,16 +1,33 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <tt><?php echo __FILE__; ?></tt></li>
-	<li>Layout file: <tt><?php echo $this->getLayoutFile('main'); ?></tt></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div class="row">
+    <div class="span12">
+        <h1 style="text-align:center;">INTERFAZ PARA BANCO DE REACTIVOS PARA EVALUACIÓN DIAGNÓSTICA</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="span2">
+        <h2>Instrucciones</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="span6">
+        <ol>
+            <li>El acceso al banco de reactivos del IEMS será por medio de
+            su correo institucional(USUARIO) y la CONTRASEÑA que ellos utilicen.</li>
+            <p>Nota: Determinar el lugar para la colocación del acceso al banco
+            de reactivos del IEMS.</p>
+            <p>La base de datos de los usuarios tendra que ser precargada de </p>
+            <li>El acceso al banco de reactivos del IEMS será por medio de
+            su correo institucional(USUARIO) y la CONTRASEÑA que ellos utilicen.</li>
+            <li>El acceso al banco de reactivos del IEMS será por medio de
+            su correo institucional(USUARIO) y la CONTRASEÑA que ellos utilicen.</li>
+        </ol>
+    </div>
+    <div class="span6">
+        <ol>
+        <li>El acceso al banco de reactivos del IEMS será por medio de
+            su correo institucional(USUARIO) y la CONTRASEÑA que ellos utilicen.</li>
+        </ol>
+    </div>
+</div>

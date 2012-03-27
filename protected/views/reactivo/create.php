@@ -1,15 +1,28 @@
-<?php
-$this->breadcrumbs=array(
-	'Reactivos'=>array('index'),
-	'Create',
-);
+<?php $this->pageTitle = CHtml::encode('EVAD | Nuevo reactivo'); ?>
 
-$this->menu=array(
-	array('label'=>'List Reactivo', 'url'=>array('index')),
-	array('label'=>'Manage Reactivo', 'url'=>array('admin')),
-);
-?>
-
-<h1>Create Reactivo</h1>
-
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="row">
+    <div class="span5">
+        <ul class="breadcrumb">
+            <li>
+                <a href="<?php echo CController::createUrl('site/index'); ?>">Inicio</a> <span class="divider">/</span>
+            </li>
+            <li>
+                <a href="<?php echo CController::createUrl('reactivo/index'); ?>">Reactivos</a> <span class="divider">/</span>
+            </li>
+            <li class="active">Nuevo</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="span4">
+        <h1>Nuevo reactivo</h1>
+    </div>
+</div>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'respuesta'=>$respuesta,
+                        'clasificacion_tematica'=>$clasificacion_tematica,
+			'tipo_reactivo'=>$tipo_reactivo,
+			'nivel_taxonomico'=>$nivel_taxonomico,
+			'nivel_dificultad'=>$nivel_dificultad,
+			'evaluacion'=>$evaluacion,
+			'estatus_reactivo'=>$estatus_reactivo,
+    )); ?>

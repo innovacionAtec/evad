@@ -6,7 +6,7 @@ class ReactivoController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
@@ -41,8 +41,7 @@ class ReactivoController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				/*'users'=>array('admin'),*/
-				'users'=>array('@'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -67,19 +66,136 @@ class ReactivoController extends Controller
 	public function actionCreate()
 	{
 		$model=new Reactivo;
+		$respuesta=new Respuesta;
 
+                
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+                $resultado = ClasificacionTematica::model()->findAll();
+
+                $clasificacion_tematica = array();
+
+                $clasificacion_tematica['falso'] = 'Selecciona estatus';
+                foreach ($resultado as $key => $value) {
+                    $clasificacion_tematica[$value->id] = $value->nombre;
+                }
+
+                $resultado = TipoReactivo::model()->findAll();
+
+                $tipo_reactivo = array();
+
+                $tipo_reactivo['falso'] = 'Selecciona estatus';
+                foreach ($resultado as $key => $value) {
+                    $tipo_reactivo[$value->id] = $value->nombre;
+                }
+
+                $resultado = NivelTaxonomico::model()->findAll();
+
+                $nivel_taxonomico = array();
+
+                $nivel_taxonomico['falso'] = 'Selecciona nivel';
+                foreach ($resultado as $key => $value) {
+                    $nivel_taxonomico[$value->id] = $value->nombre;
+                }
+
+                $resultado = NivelDificultad::model()->findAll();
+
+                $nivel_dificultad = array();
+
+                $nivel_dificultad['falso'] = 'Selecciona nivel';
+                foreach ($resultado as $key => $value) {
+                    $nivel_dificultad[$value->id] = $value->nombre;
+                }
+
+                $resultado = Evaluacion::model()->findAll();
+
+                $evaluacion = array();
+
+                $evaluacion['falso'] = 'Selecciona evaluación';
+                foreach ($resultado as $key => $value) {
+                    $evaluacion[$value->id] = $value->nombre;
+                }
+                
+                $resultado = EstatusReactivo::model()->findAll();
+
+                $estatus_reactivo = array();
+
+                $estatus_reactivo['falso'] = 'Selecciona estatus';
+                foreach ($resultado as $key => $value) {
+                    $estatus_reactivo[$value->id] = $value->nombre;
+                }
+                
 		if(isset($_POST['Reactivo']))
 		{
 			$model->attributes=$_POST['Reactivo'];
+			$respuesta->attributes=$_POST['Respuesta'];
+                        
+                        /*var_dump($_POST['correcta']);
+                        die;*/
+                        
+                        $model->id_padre= 0;
+                        $model->usuario_creador= Yii::app()->user->id_usuario;
+                        $model->usuario_editor= Yii::app()->user->id_usuario;
+                        $model->fecha_creacion= time();
+                        $model->fecha_edicion= time();
+                        $model->contador_edicion= 1;
+                        $model->id_tipo_reactivo= 3;
+                        $model->status= true;
+                        if(!file_exists(Yii::app()->basePath.'/../files/')){
+                            mkdir(Yii::app()->basePath.'/../files/',0777,true);
+                        }
+                        $model->archivo = CUploadedFile::getInstance($model,'archivo');
+                        
+                        if($model->validate())
+                        {
+                            if(!empty($model->archivo)){
+                                $posicion= strrpos($model->archivo->name,'.');
+                                $nombre_arc= substr($model->archivo->name, 0, $posicion).'_'.time().substr($model->archivo->name, $posicion);
+                                $model->archivo->saveAs(Yii::app()->basePath.'/../files/'.$nombre_arc);
+                                $model->archivo=$nombre_arc;
+                            }
+                            if($model->save(false)){
+                                    $respuestas= $respuesta->argumento;
+                                    $i=1;
+                                    foreach($respuestas as $respuesta1){
+                                        $respuesta_guardar=new Respuesta;
+                                        if($i==$_POST['correcta']){
+                                            $respuesta_guardar->correcta=true;
+                                        }
+                                        else{
+                                            $respuesta_guardar->correcta=false;
+                                        }
+                                        $respuesta_guardar->id_reactivo= $model->id;
+                                        $respuesta_guardar->usuario_creador= Yii::app()->user->id_usuario;
+                                        $respuesta_guardar->usuario_editor= Yii::app()->user->id_usuario;
+                                        $respuesta_guardar->fecha_creacion= time();
+                                        $respuesta_guardar->fecha_edicion= time();
+                                        $respuesta_guardar->argumento=$respuesta1;
+                                        if(!empty($respuesta_guardar->argumento)){
+                                            $respuesta_guardar->save();
+                                        }
+                                        $i++;
+                                    }
+                                    
+                                
+                                $this->redirect(array('reactivo/view','id'=>$model->id));
+                            }
+                        }
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'respuesta'=>$respuesta,
+			'clasificacion_tematica'=>$clasificacion_tematica,
+			'tipo_reactivo'=>$tipo_reactivo,
+			'nivel_taxonomico'=>$nivel_taxonomico,
+			'nivel_dificultad'=>$nivel_dificultad,
+			'evaluacion'=>$evaluacion,
+			'estatus_reactivo'=>$estatus_reactivo,
 		));
 	}
 

@@ -6,7 +6,7 @@ class ClasificacionTematicaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
@@ -41,8 +41,7 @@ class ClasificacionTematicaController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				/*'users'=>array('admin'),*/
-				'users'=>array('@'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -74,6 +73,10 @@ class ClasificacionTematicaController extends Controller
 		if(isset($_POST['ClasificacionTematica']))
 		{
 			$model->attributes=$_POST['ClasificacionTematica'];
+                        $model->usuario_creador= Yii::app()->user->id_usuario;
+                        $model->usuario_editor= Yii::app()->user->id_usuario;
+                        $model->fecha_creacion= time();
+                        $model->fecha_edicion= time();
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -130,6 +133,10 @@ class ClasificacionTematicaController extends Controller
 	 */
 	public function actionIndex()
 	{
+            /*$model= ClasificacionTematica::model()->findAll();
+            $this->render('index',array(
+			'model'=>$model,
+		));*/
 		$dataProvider=new CActiveDataProvider('ClasificacionTematica');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

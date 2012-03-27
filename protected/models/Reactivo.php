@@ -51,7 +51,14 @@ class Reactivo extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('archivo', 'length', 'max'=>250),
-			array('planteamiento, id_estatus_reactivo, id_clasificacion_tematica, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe'),
+                    
+                        //array('archivo', 'file', 'message'=>'Debe ser archivo'),
+                    
+			array('planteamiento, id_clasificacion_tematica, id_tipo_reactivo, id_nivel_taxonomico, id_nivel_dificultad, id_estatus_reactivo', 'required'),
+			
+                        array('id_estatus_reactivo, id_clasificacion_tematica, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe'),
+                    
+                        array('id_clasificacion_tematica, id_tipo_reactivo, id_nivel_taxonomico, id_nivel_dificultad, id_estatus_reactivo','compare','compareValue'=>'falso','operator'=>'!=','message'=>'Seleccione un {attribute}.'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, planteamiento, id_estatus_reactivo, id_clasificacion_tematica, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, archivo, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe', 'on'=>'search'),
