@@ -1,14 +1,15 @@
-<div class="form">
+<div class="form well">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'nivel-dificultad-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+        <div class="row">
+        <div class="span5">
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
 		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>250)); ?>
@@ -21,7 +22,7 @@
 		<?php echo $form->error($model,'descripcion'); ?>
 	</div>
 
-	<div class="row">
+	<!--<div class="row">
 		<?php echo $form->labelEx($model,'fecha_creacion'); ?>
 		<?php echo $form->textField($model,'fecha_creacion'); ?>
 		<?php echo $form->error($model,'fecha_creacion'); ?>
@@ -49,10 +50,16 @@
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->checkBox($model,'status'); ?>
 		<?php echo $form->error($model,'status'); ?>
-	</div>
+	</div>-->
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <hr />
+            
+	<div class="row" style="margin-top:20px">
+            <div class="span6" style="text-align: center;">
+                <button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i> Guardar</button>
+            </div>
+        </div>
+	</div>
 	</div>
 
 <?php $this->endWidget(); ?>
