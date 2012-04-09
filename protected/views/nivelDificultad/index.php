@@ -8,7 +8,7 @@ $this->menu=array(
 	array('label'=>'Manage NivelDificultad', 'url'=>array('admin')),
 );*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Nivel dificultad'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
