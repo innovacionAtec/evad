@@ -29,7 +29,7 @@ $this->menu=array(
 </div>
 <div class="row">
     <div class="span4">
-        <h1>Reactivo #<?php echo $model->id; ?></h1>
+        <h1>Detalle de reactivo #<?php echo $model->id; ?></h1>
     </div>
 </div>
 

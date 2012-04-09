@@ -8,7 +8,7 @@
   array('label'=>'Manage Rol', 'url'=>array('admin')),
   ); */
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Rol'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">

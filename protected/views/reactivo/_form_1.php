@@ -148,15 +148,12 @@
                 <? } else{ ?>
                 <?php echo $form->radioButton($respuesta,'correcta', array('value'=>$i, 'uncheckValue'=>null)); ?>
                 <? } ?>
-                
                 <?php echo CHtml::label('Respuesta ' . $i, 'respuesta['.$i.']'); ?>
-                <?php /*echo $form->textArea($respuesta,'argumento['.$i.']', array('rows' => 6, 'style' => 'width:90%; max-width:100%;'));*/ ?>
-                <?php $this->widget('application.extensions.fckeditor.FCKEditorWidget',array(
-		    //"model"=>$respuesta,                # Data-Model
-		    //"attribute"=>'argumento['.$i.']',         # Attribute in the Data-Model
-		    "name"=>'Respuesta[argumento]['.$i.']',         # Solo pone nombre
-		    "value"=>$respuesta->argumento[$i],
-                    "height"=>'200px',
+                <?php echo $form->textArea($respuesta,'argumento['.$i.']', array('rows' => 6, 'style' => 'width:90%; max-width:100%;')); ?>
+                <?php /*$this->widget('application.extensions.fckeditor.FCKEditorWidget',array(
+		    "model"=>$respuesta,                # Data-Model
+		    "attribute"=>'argumento['.$i.']',         # Attribute in the Data-Model
+		    "height"=>'400px',
 		    "width"=>'100%',
 		    "toolbarSet"=>'Default',          # EXISTING(!) Toolbar (see: fckeditor.js)
 		    "fckeditor"=>Yii::app()->basePath."/../fckeditor/fckeditor.php",
@@ -166,7 +163,7 @@
 		    "config" => array(
 		        "EditorAreaCSS"=>Yii::app()->baseUrl.'/css/index.css',),
                                                                    
-    			) ); ?>
+    			) );*/ ?>
             </div>
             <?php } ?>
             <div id="link_mas">
@@ -177,23 +174,7 @@
                 <div class="row">
                     <?php echo $form->radioButton($respuesta,'correcta', array('value'=>$i, 'uncheckValue'=>null)); ?>
                     <?php echo CHtml::label('Respuesta ' . $i, 'respuesta['.$i.']'); ?>
-                    <?php /*echo $form->textArea($respuesta,'argumento['.$i.']', array('rows' => 6, 'style' => 'width:90%; max-width:100%;'));*/ ?>
-                    <?php $this->widget('application.extensions.fckeditor.FCKEditorWidget',array(
-		    //"model"=>$respuesta,                # Data-Model
-		    //"attribute"=>'argumento['.$i.']',         # Attribute in the Data-Model
-		    "name"=>'Respuesta[argumento]['.$i.']',         # Solo pone nombre
-		    "value"=>$respuesta->argumento[$i],
-                    "height"=>'200px',
-		    "width"=>'100%',
-		    "toolbarSet"=>'Default',          # EXISTING(!) Toolbar (see: fckeditor.js)
-		    "fckeditor"=>Yii::app()->basePath."/../fckeditor/fckeditor.php",
-                                    # Path to fckeditor.php
-		    "fckBasePath"=>Yii::app()->baseUrl."/fckeditor/",
-                                    # Realtive Path to the Editor (from Web-Root)
-		    "config" => array(
-		        "EditorAreaCSS"=>Yii::app()->baseUrl.'/css/index.css',),
-                                                                   
-    			) ); ?>
+                    <?php echo $form->textArea($respuesta,'argumento['.$i.']', array('rows' => 6, 'style' => 'width:90%; max-width:100%;')); ?>
                 </div>
                 <?php } ?>
             </div>
