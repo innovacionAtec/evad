@@ -1,5 +1,5 @@
-<?php /*
-$this->breadcrumbs=array(
+<?php
+/*$this->breadcrumbs=array(
 	'Estatus Reactivos'=>array('index'),
 	'Create',
 );
@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'Manage EstatusReactivo', 'url'=>array('admin')),
 );*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Nuevo estatus'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
@@ -29,7 +29,7 @@ $this->menu=array(
 
 <div class="row">
     <div class="span7">
-        <h1>Agregar Nuevo Estatus</h1>
+        <h1>Agregar nuevo estatus</h1>
     </div>
 </div>
 
@@ -37,4 +37,3 @@ $this->menu=array(
     <div class="span7 offset1">
         <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
     </div>
-</div>
