@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'Manage ClasificacionTematica', 'url'=>array('admin')),
 );*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Nueva clasificación'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
@@ -22,14 +22,14 @@ $this->menu=array(
             <li>
                 <a href="<?php echo CController::createUrl('clasificacionTematica/index'); ?>">Clasificación temática</a> <span class="divider">/</span>
             </li>
-            <li class="active">Nuevo</li>
+            <li class="active">Nueva</li>
         </ul>
     </div>
 </div>
 
 <div class="row">
     <div class="span7">
-        <h1>Agregar Nueva Clasificación Temática</h1>
+        <h1>Agregar nueva clasificación temática</h1>
     </div>
 </div>
 
