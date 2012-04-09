@@ -8,7 +8,7 @@
   array('label'=>'Manage ClasificacionTematica', 'url'=>array('admin')),
   ); */
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Clasificación temática'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
@@ -18,14 +18,14 @@
             <li>
                 <a href="<?php echo CController::createUrl('site/catalogos'); ?>">Catálogos</a> <span class="divider">/</span>
             </li>
-            <li class="active">Clasificación</li>
+            <li class="active">Clasificación temática</li>
         </ul>
     </div>
 </div>
 
 <div class="row">
     <div class="span4">
-        <h1>Clasificacion Tematicas</h1>
+        <h1>Clasificación temática</h1>
     </div>
     <div class="span2">
         <script type="text/javascript">

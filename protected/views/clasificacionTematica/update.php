@@ -12,7 +12,7 @@ $this->menu=array(
 	array('label'=>'Manage ClasificacionTematica', 'url'=>array('admin')),
 );*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Actualizar clasificación temética'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
@@ -32,7 +32,7 @@ $this->menu=array(
 
 <div class="row">
     <div class="span7">
-        <h1>Actualizar Clasificacion Tematica #<?php echo $model->id; ?></h1>
+        <h1>Actualizar clasificación temática #<?php echo $model->id; ?></h1>
     </div>
 </div>
 
