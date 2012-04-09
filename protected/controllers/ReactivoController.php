@@ -132,7 +132,7 @@ class ReactivoController extends Controller
 			$model->attributes=$_POST['Reactivo'];
 			$respuesta->attributes=$_POST['Respuesta'];
                         
-                        /*var_dump($_POST['correcta']);
+                        /*var_dump($model['planteamiento']);
                         die;*/
                         
                         $model->id_padre= 0;
@@ -161,7 +161,7 @@ class ReactivoController extends Controller
                                     $i=1;
                                     foreach($respuestas as $respuesta1){
                                         $respuesta_guardar=new Respuesta;
-                                        if($i==$_POST['correcta']){
+                                        if($i==$respuesta['correcta']){
                                             $respuesta_guardar->correcta=true;
                                         }
                                         else{

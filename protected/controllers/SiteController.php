@@ -85,8 +85,12 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()){
+	                        date_default_timezone_set("America/Mexico_City");
+	                        $usuario = Usuario::model()->updateByPk(Yii::app()->user->id_usuario,
+                                    array('ultimo_login'=>time()));
 				$this->redirect(Yii::app()->user->returnUrl);
+			}
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
@@ -97,6 +101,9 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+                date_default_timezone_set("America/Mexico_City");
+                $usuario = Usuario::model()->updateByPk(Yii::app()->user->id_usuario,
+	                array('ultimo_login'=>time()));
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
