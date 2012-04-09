@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php //28mar12_Cirenia
-if (!Yii::app()->user->isGuest)
-	$usuario=Usuario::model()->findByPk(Yii::app()->user->id_usuario); ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -54,7 +51,7 @@ if (!Yii::app()->user->isGuest)
                                 <a href="<?php echo CController::createUrl('site/login'); ?>">Carga de parámetros</a>
                             </li>
                             <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Inventarios<b class="caret"></b></a> <!--28mar12_Cirenia-->
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Inventarios<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Elaboradores</a></li>
                                     <li><a href="#">Competencia matemática</a></li>
@@ -79,7 +76,7 @@ if (!Yii::app()->user->isGuest)
                                 </li>
                             <?php } else { ?>
                                 <li class="">
-                                    <a href="<?php echo CController::createUrl('site/logout'); ?>"><i class="icon-user icon-white"></i> Cerrar sesión <?php echo '('.$usuario->email.')'; ?></a>
+                                    <a href="<?php echo CController::createUrl('site/logout'); ?>"><i class="icon-user icon-white"></i> Cerrar sesión</a>
                                 </li>
                             <?php } ?>
                         </ul>
