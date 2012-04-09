@@ -8,7 +8,7 @@ $this->menu=array(
 	array('label'=>'Manage Usuario', 'url'=>array('admin')),
 );*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Usuario'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
