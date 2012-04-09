@@ -1,5 +1,5 @@
 <?php
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Tipo Reactivos'=>array('index'),
 	'Create',
 );
@@ -7,9 +7,34 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'List TipoReactivo', 'url'=>array('index')),
 	array('label'=>'Manage TipoReactivo', 'url'=>array('admin')),
-);
+);*/
 ?>
+<?php $this->pageTitle = CHtml::encode('EVAD | Nuevo tipo'); ?>
+<div class="row">
+    <div class="span5">
+        <ul class="breadcrumb">
+            <li>
+                <a href="<?php echo CController::createUrl('site/index'); ?>">Inicio</a> <span class="divider">/</span>
+            </li>
+            <li>
+                <a href="<?php echo CController::createUrl('site/catalogos'); ?>">Catálogos</a> <span class="divider">/</span>
+            </li>
+            <li>
+                <a href="<?php echo CController::createUrl('tipoReactivo/index'); ?>">Tipo de reactivo</a> <span class="divider">/</span>
+            </li>
+            <li class="active">Nuevo</li>
+        </ul>
+    </div>
+</div>
 
-<h1>Create TipoReactivo</h1>
+<div class="row">
+    <div class="span7">
+        <h1>Agregar nuevo tipo de reactivo</h1>
+    </div>
+</div>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="row">
+    <div class="span7 offset1">
+        <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+    </div>
+</div>
