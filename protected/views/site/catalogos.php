@@ -22,7 +22,7 @@
           <li><a href="<?php echo CController::createUrl('tipoReactivo/index'); ?>">Tipo de reactivo</a></li>
           <li class="nav-header">Administradores</li>
           <li><a href="<?php echo CController::createUrl('rol/index'); ?>">Rol</a></li>
-          <li><a href="<?php echo CController::createUrl('usuario/index'); ?>">Usuarios</a></li>
+          <li><a href="<?php echo CController::createUrl('usuario/index'); ?>">Usuario</a></li>
         </ul>
       </div>  
     </div>
