@@ -1,6 +1,5 @@
 <?php
-/*
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Evaluacions'=>array('index'),
 	$model->id,
 );
@@ -11,10 +10,9 @@ $this->menu=array(
 	array('label'=>'Update Evaluacion', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Evaluacion', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Evaluacion', 'url'=>array('admin')),
-);
-*/
+);*/
 ?>
-
+<?php $this->pageTitle = CHtml::encode('EVAD | Detalle evaluación'); ?>
 <div class="row">
     <div class="span5">
         <ul class="breadcrumb">
@@ -34,13 +32,13 @@ $this->menu=array(
 
 <div class="row">
     <div class="span7">
-        <h1>Detalle Evaluación #<?php echo $model->id; ?></h1>
+        <h1>Detalle de evaluación #<?php echo $model->id; ?></h1>
     </div>
 </div>
 
 <?php
-$model->fecha_creacion = date('d-m-Y', $model->fecha_creacion);
-$model->fecha_edicion = date('d-m-Y', $model->fecha_edicion);
+$model->fecha_creacion = date('d-m-Y H:i', $model->fecha_creacion);
+$model->fecha_edicion = date('d-m-Y H:i', $model->fecha_edicion);
 $nombre = Usuario::model()->findByPk($model->usuario_creador);
 $nombre_creador = $nombre->nombres . ' ' . $nombre->apellido_paterno . ' ' . $nombre->apellido_materno;
 $nombre = Usuario::model()->findByPk($model->usuario_editor);
@@ -76,10 +74,28 @@ $nombre_editor = $nombre->nombres . ' ' . $nombre->apellido_paterno . ' ' . $nom
 <div class="row">
     <div class="span11">
         <p class="alert alert-info pull-right">
-            <i class="icon-pencil"></i>
-            <i class="icon-remove"></i>
+            <script type="text/javascript">
+                $(function(){ $(".icon")
+                    .popover({
+                        offset: 5,
+                        placement: 'right'
+                    });
+                });
+            </script>
+            &nbsp;&nbsp;
+            <a href="<?php echo CController::createUrl('update', array('id'=>$model->id)); ?>" class="icon" data-content="Permite editar el elemento" rel="popover" data-original-title="Info">
+                <i class="icon-pencil"></i>
+            </a>
+            &nbsp;
+            <!--<a href="<?php echo CController::createUrl('delete', array('id'=>$model->id)); ?>" class="icon" data-content="Permite eliminar el elemento" rel="popover" data-original-title="Info">-->
+                <i class="icon-remove"></i>
+            <!--</a>-->
+            &nbsp;
+            <a href="<?php echo CController::createUrl('index'); ?>" class="icon" data-content="Ir a la página anterior" rel="popover" data-original-title="Info">
+                <i class="icon-chevron-left"></i>
+            </a>
         </p>
-
+        
     <?php /*
       <b><?php echo CHtml::encode($model->getAttributeLabel('status')); ?>:</b>
       <?php echo CHtml::encode($model->status); ?>
