@@ -8,8 +8,7 @@
 	<p class="note">Campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
+        <div class="row">
         <div class="span5">
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
@@ -52,7 +51,8 @@
 		<?php echo $form->checkBox($model,'status'); ?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>-->
-	 <hr />
+
+        <hr />
             
 	<div class="row" style="margin-top:20px">
             <div class="span6" style="text-align: center;">
@@ -63,4 +63,5 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
 </div><!-- form -->
