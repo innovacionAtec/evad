@@ -1,0 +1,96 @@
+<?php
+$model->id_clasificacion_tematica= ClasificacionTematica::model()->findByPk($model->id_clasificacion_tematica)->nombre;
+$tipo_reactivo= TipoReactivo::model()->findByPk($model->id_tipo_reactivo)->nombre;
+$model->id_nivel_taxonomico= NivelTaxonomico::model()->findByPk($model->id_nivel_taxonomico)->nombre;
+$model->id_nivel_dificultad= NivelDificultad::model()->findByPk($model->id_nivel_dificultad)->nombre;
+$model->id_estatus_reactivo= EstatusReactivo::model()->findByPk($model->id_estatus_reactivo)->nombre;
+$usuario= Usuario::model()->findByPk($model->usuario_creador);
+$nombre_usuario_creador= $usuario->nombres . ' ' . $usuario->apellido_paterno . ' ' . $usuario->apellido_materno;
+?>
+<?php $this->pageTitle = CHtml::encode('EVAD | Reactivo '. $model->id); ?>
+
+<div class="row">
+    <div class="span5">
+        <ul class="breadcrumb">
+            <li>
+                <a href="<?php echo CController::createUrl('site/index'); ?>">Inicio</a> <span class="divider">/</span>
+            </li>
+            <li>
+                <a href="<?php echo CController::createUrl('reactivo/index'); ?>">Reactivo</a> <span class="divider">/</span>
+            </li>
+            <li class="active">Nuevo</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="span4">
+        <h1>Reactivo #<?php echo $model->id; ?></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span5 well">
+        <b><?php echo CHtml::encode($model->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($model->id), array('view', 'id'=>$model->id)); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($model->getAttributeLabel('planteamiento')); ?>:</b>
+	<?php echo $model->planteamiento; ?>
+	<br />
+    </div>
+    <div class="span5 well">
+        
+	<b><?php echo CHtml::encode($model->getAttributeLabel('id_clasificacion_tematica')); ?>:</b>
+	<?php echo CHtml::encode($model->id_clasificacion_tematica); ?>
+	<br />
+        
+	<b><?php echo CHtml::encode($model->getAttributeLabel('id_tipo_reactivo')); ?>:</b>
+	<?php echo CHtml::encode($tipo_reactivo); ?>
+	<br />
+        
+        <?php if($model->id_tipo_reactivo==2){ ?>
+        <b><?php echo CHtml::encode($model->getAttributeLabel('id_padre')); ?>:</b>
+	<?php echo CHtml::encode($model->id_padre); ?> <a href="<?php echo CController::createUrl('reactivo/' . $model->id_padre); ?>"><i class="icon-eye-open"></i></a>
+	<br />
+        <?php } ?>
+        
+	<b><?php echo CHtml::encode($model->getAttributeLabel('id_nivel_taxonomico')); ?>:</b>
+	<?php echo CHtml::encode($model->id_nivel_taxonomico); ?>
+	<br />
+        
+	<b><?php echo CHtml::encode($model->getAttributeLabel('id_nivel_dificultad')); ?>:</b>
+	<?php echo CHtml::encode($model->id_nivel_taxonomico); ?>
+	<br />
+        
+        <b><?php echo CHtml::encode($model->getAttributeLabel('id_estatus_reactivo')); ?>:</b>
+	<?php echo CHtml::encode($model->id_estatus_reactivo); ?>
+	<br />
+        
+        <b><?php echo CHtml::encode($model->getAttributeLabel('usuario_creador')); ?>:</b>
+	<?php echo CHtml::encode($nombre_usuario_creador); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($model->getAttributeLabel('fecha_edicion')); ?>:</b>
+	<?php echo CHtml::encode(date('d-m-Y',$model->fecha_edicion)); ?>
+	<br />
+
+    </div>
+</div>
+
+RESPUESTAS
+<div class="row">
+    <div class="span10 well">
+        <?php $respuestas =Respuesta::model()->findAll('id_reactivo=:id_reactivo', array(':id_reactivo'=>$model->id));?>
+        <?php foreach($respuestas as $respuesta){ ?>
+        <div class="row">
+                <?php if($respuesta->correcta==true){ ?>
+                        <div class="span8 alert alert-success">
+                <?php } else { ?>
+                        <div class="span8 alert alert-error">
+                <?php } ?>
+                    Respuesta : <?php echo $respuesta->argumento; ?> 
+                    </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>

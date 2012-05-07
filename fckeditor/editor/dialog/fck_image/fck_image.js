@@ -36,22 +36,22 @@ var bImageButton = ( document.location.search.length > 0 && document.location.se
 // Set the dialog tabs.
 dialog.AddTab( 'Info', FCKLang.DlgImgInfoTab ) ;
 
-if ( !bImageButton && !FCKConfig.ImageDlgHideLink )
-	dialog.AddTab( 'Link', FCKLang.DlgImgLinkTab ) ;
+//if ( !bImageButton && !FCKConfig.ImageDlgHideLink )
+//	dialog.AddTab( 'Link', FCKLang.DlgImgLinkTab ) ;
 
 if ( FCKConfig.ImageUpload )
 	dialog.AddTab( 'Upload', FCKLang.DlgLnkUpload ) ;
 
-if ( !FCKConfig.ImageDlgHideAdvanced )
-	dialog.AddTab( 'Advanced', FCKLang.DlgAdvancedTag ) ;
+//if ( !FCKConfig.ImageDlgHideAdvanced )
+//	dialog.AddTab( 'Advanced', FCKLang.DlgAdvancedTag ) ;
 
 // Function called when a dialog tag is selected.
 function OnDialogTabChange( tabCode )
 {
 	ShowE('divInfo'		, ( tabCode == 'Info' ) ) ;
-	ShowE('divLink'		, ( tabCode == 'Link' ) ) ;
+	//ShowE('divLink'		, ( tabCode == 'Link' ) ) ;
 	ShowE('divUpload'	, ( tabCode == 'Upload' ) ) ;
-	ShowE('divAdvanced'	, ( tabCode == 'Advanced' ) ) ;
+	//ShowE('divAdvanced'	, ( tabCode == 'Advanced' ) ) ;
 }
 
 // Get the selected image (if available).
@@ -67,6 +67,25 @@ var oImageOriginal ;
 
 function UpdateOriginal( resetSize )
 {
+	 oEditor.FCKLanguageManager.TranslatePage(document) ;
+	// Load the selected element information (if any).
+	LoadSelection() ;
+	// Show/Hide the "Browse Server" button.
+	GetE('tdBrowse').style.display= FCKConfig.ImageBrowser	? '' : 'none' ;
+	GetE('divLnkBrowseServer').style.display= FCKConfig.LinkBrowser		? '' : 'none' ;
+
+	// Set the actual uploader URL.
+
+	if ( FCKConfig.ImageUpload )
+		GetE('frmUpload').action = FCKConfig.ImageUploadURL ;
+
+	dialog.SetAutoSize( true ) ;
+
+	// Activate the "OK" button.
+	dialog.SetOkButton( true ) ;
+
+	SelectField( 'txtUrl' ) ;
+
 	if ( !eImgPreview )
 		return ;
 
@@ -454,7 +473,7 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 	switch ( errorNumber )
 	{
 		case 0 :	// No errors
-			alert( 'Your file has been successfully uploaded' ) ;
+			alert( 'Su imagen fue agregada exitosamente' ) ;
 			break ;
 		case 1 :	// Custom error
 			alert( customMsg ) ;
@@ -463,10 +482,10 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 			alert( customMsg ) ;
 			break ;
 		case 201 :
-			alert( 'A file with the same name is already available. The uploaded file has been renamed to "' + fileName + '"' ) ;
+			alert( 'Ya existe un archivo con ese nombre. Se renombró por "' + fileName + '"' ) ;
 			break ;
 		case 202 :
-			alert( 'Invalid file type' ) ;
+			alert( 'Tipo de archivo no válido' ) ;
 			return ;
 		case 203 :
 			alert( "Security error. You probably don't have enough permissions to upload. Please check your server." ) ;

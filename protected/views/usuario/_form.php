@@ -56,6 +56,11 @@
                 <?php echo $form->dropDownList($model, 'id_rol', $roles); /* echo $form->textField($model,'id_rol'); */ ?>
                 <?php echo $form->error($model, 'id_rol'); ?>
             </div>
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_area'); ?>
+                <?php echo $form->dropDownList($model, 'id_area', $area); /* echo $form->textField($model,'id_rol'); */ ?>
+                <?php echo $form->error($model, 'id_area'); ?>
+            </div>
         </div>
         <?php /*
           <!--<div class="row">

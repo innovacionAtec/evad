@@ -12,17 +12,180 @@
 */
 
 body { 
-    /*background-color: #28b5db;*/
+    background-color: #fff;
 }
 
 .content { 
     /*background-color: #FFFFFF;*/
     margin-top: 10px;
+	min-height: 640px;
+}
+
+.navbar-inner {
+	background-image: -moz-linear-gradient(top, #1b98d8, #15688f);
+  background-image: -ms-linear-gradient(top, #1b98d8, #15688f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1b98d8), to(#15688f));
+  background-image: -webkit-linear-gradient(top, #1b98d8, #15688f);
+  background-image: -o-linear-gradient(top, #1b98d8, #15688f);
+  background-image: linear-gradient(top, #1b98d8, #15688f);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1b98d8', endColorstr='#15688f', GradientType=0);
+
+}
+
+.header-index{
+	background-image: -moz-linear-gradient(top, #f5efef, #bfbbbb);
+  background-image: -ms-linear-gradient(top, #f5efef, #bfbbbb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5efef), to(#bfbbbb));
+  background-image: -webkit-linear-gradient(top, #f5efef, #bfbbbb);
+  background-image: -o-linear-gradient(top, #f5efef, #bfbbbb);
+  background-image: linear-gradient(top, #f5efef, #bfbbbb);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5efef', endColorstr='#bfbbbb', GradientType=0);
+  padding-top:20px;
+  padding-bottom:70px;
+  border: solid  5px #d5dada;
+ 
+
+}
+
+.header-index h1{
+	font-size: 130px;
+	line-height: 130px;
+	text-align:center;
+	color:#1a7099;
+	border-bottom:solid #b0aeae;
+
+}
+
+.header-index h2{
+	text-align:center;
+	color:#5f6162;
+	text-shadow:3px 0px 2px #fff;
+}
+
+.alert-info2 {
+  background-color: #126e9c;
+  border-color: #16a1e9;
+  color: #084c6e;
+  text-shadow:2px 1px 0px #60b8e4;
+  font-weight:bolder;
+  font-size:22px;
+  
+  background-image: -moz-linear-gradient(top, #2ea9e9, #0f6995);
+  background-image: -ms-linear-gradient(top, #2ea9e9, #0f6995);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2ea9e9), to(#0f6995));
+  background-image: -webkit-linear-gradient(top, #2ea9e9, #0f6995);
+  background-image: -o-linear-gradient(top, #2ea9e9, #0f6995);
+  background-image: linear-gradient(top, #2ea9e9, #0f6995);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2ea9e9', endColorstr='#0f6995', GradientType=0);
+  /*margin: 10px 0px 20px  0;*/
+  padding: 20px;
+  
+  
 }
 
 .footer {
-    border-top: 1px solid #E5E5E5;
-    margin-top: 45px;
+/*    border-top: 1px solid #E5E5E5;*/
+	margin-top: 60px;/*para poner hasta abajo el footer*/
     padding: 35px 0 36px;
+/*	background:none repeat scroll 0 0 #0b628e;*/
+	background-image:url(../../css/img/footerBack.jpg);
+	background-repeat:repeat-x;
 }
 
+div.dataTables_length label {
+    width: 460px;
+    float: left;
+    text-align: left;
+    display:inline-block;
+}
+ 
+div.dataTables_length select {
+    width: 75px;
+    display:inline-block;
+}
+ 
+div.dataTables_filter label {
+    float: right;
+    margin: 0;
+    display:inline-block;
+}
+
+div.dataTables_filter input{
+    display:inline-block;
+}
+ 
+div.dataTables_info {
+    padding-top: 8px;
+}
+ 
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+ 
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+table.dataTable th:active {
+	outline: none;
+}
+
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar .brand {
+  float: left;
+  display: block;
+  padding: 8px 20px 12px 100px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #ffffff;
+}
+.navbar .nav > li > a {
+  float: none;
+  padding: 10px 10px 11px;
+  line-height: 19px;
+  color: #d2d1d1;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #d2d1d1;
+}
+
+.textBoxIndex{
+	color:#235f7b;
+	font-weight:bolder;
+	font-size: 22px;
+		}
+
+.importanteBoxIndex{
+	color:#000;
+	font-weight:bolder;
+	font-size:26px;
+	padding-left:50px;
+	}
+	
+footer a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight:bolder;
+}
+footer a:hover {
+  color: #51c0fa;
+  text-decoration: underline;
+  font-weight:bolder;
+}

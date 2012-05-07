@@ -1,0 +1,68 @@
+<div class="form well">
+
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'reactivo-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
+            ));
+    ?>
+
+    <p class="note">Campos con <span class="required">*</span> son obligatorios.</p>
+
+    <?php echo $form->errorSummary($model); ?>
+    <div class="row">
+    <div class="span6">
+        <div class="row">
+            <?php echo $form->labelEx($model, 'planteamiento'); ?>
+            <?php $this->widget('application.extensions.fckeditor.FCKEditorWidget',array(
+		    "model"=>$model,                # Data-Model
+		    "attribute"=>'planteamiento',         # Attribute in the Data-Model
+		    "height"=>'400px',
+		    "width"=>'100%',
+		    "toolbarSet"=>'Default',          # EXISTING(!) Toolbar (see: fckeditor.js)
+		    "fckeditor"=>Yii::app()->basePath."/../fckeditor/fckeditor.php",
+                                    # Path to fckeditor.php
+		    "fckBasePath"=>Yii::app()->baseUrl."/fckeditor/",
+                                    # Realtive Path to the Editor (from Web-Root)
+		    "config" => array(
+		        "EditorAreaCSS"=>Yii::app()->baseUrl.'/css/index.css',),
+                                                                   
+    			) ); ?>
+            <?php /*echo $form->textArea($model, 'planteamiento', array('rows' => 6, 'style' => 'width:90%; max-width:100%;'));*/ ?>
+            
+            <?php echo $form->error($model, 'planteamiento'); ?>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="row">
+            <?php echo $form->labelEx($model, 'id_estatus_reactivo'); ?>
+            <?php echo $form->dropDownList($model, 'id_estatus_reactivo', $estatus_reactivo); ?>
+            <?php echo $form->error($model, 'id_estatus_reactivo'); ?>
+        </div>
+
+        <div class="row">
+            <?php echo $form->labelEx($model, 'id_clasificacion_tematica'); ?>
+            <?php echo $form->dropDownList($model, 'id_clasificacion_tematica', $clasificacion_tematica); ?>
+            <?php echo $form->error($model, 'id_clasificacion_tematica'); ?>
+        </div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model, 'archivo'); ?>
+            <?php echo $form->fileField($model, 'archivo'); ?>
+            <?php echo $form->error($model, 'archivo'); ?>
+        </div>
+    </div>
+    </div>
+
+    <hr/>
+    
+    <div class="row" style="margin-top:20px">
+        <div class="span12" style="text-align: center;">
+            <button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i> Guardar</button>
+        </div>
+    </div>
+    
+    <?php $this->endWidget(); ?>
+
+</div><!-- form -->

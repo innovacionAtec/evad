@@ -29,6 +29,10 @@ class Reactivo extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Reactivo the static model class
 	 */
+         public $error_respuestas_vacias;
+         public $error_correcta_vacia;
+         public $error_sin_correcta;
+    
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -49,20 +53,44 @@ class Reactivo extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
+            if((!isset($_GET['tipo'])) || (isset($_GET['id_padre']))){
 		return array(
 			array('archivo', 'length', 'max'=>250),
                     
                         //array('archivo', 'file', 'message'=>'Debe ser archivo'),
                     
-			array('planteamiento, id_clasificacion_tematica, id_tipo_reactivo, id_nivel_taxonomico, id_nivel_dificultad, id_estatus_reactivo', 'required'),
+			array('planteamiento, id_area, id_tipo_reactivo, id_estado, id_competencia, id_desempeno, id_aprendizaje', 'required'),
 			
-                        array('id_estatus_reactivo, id_clasificacion_tematica, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe'),
+                        array('id_estado, id_area, id_tipo_reactivo, id_padre, id_nivel_cognitivo, id_evaluacion, observaciones, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe'),
                     
-                        array('id_clasificacion_tematica, id_tipo_reactivo, id_nivel_taxonomico, id_nivel_dificultad, id_estatus_reactivo','compare','compareValue'=>'falso','operator'=>'!=','message'=>'Seleccione un {attribute}.'),
+                        array('error_respuestas_vacias','compare','compareValue'=> 'error','operator'=>'!=','message'=>'No puede haber respuestas vacias.'),
+                        
+                        //array('error_correcta_vacia','compare','compareValue'=> 'error','operator'=>'!=','message'=>'La respuesta correcta no debe estar vacia.'),
+                        
+                        array('error_sin_correcta','compare','compareValue'=> 'error','operator'=>'!=','message'=>'Debes seleccionar una respuesta correcta.'),
+                    
+                        array('id_area, id_tipo_reactivo, id_nivel_cognitivo, id_estado,  id_competencia, id_desempeno, id_aprendizaje','compare','compareValue'=>'falso','operator'=>'!=','message'=>'Seleccione un {attribute}.'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, planteamiento, id_estatus_reactivo, id_clasificacion_tematica, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, archivo, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe', 'on'=>'search'),
+			array('id, planteamiento, id_estatus_reactivo, id_area, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, archivo, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe', 'on'=>'search'),
 		);
+            }
+            else{
+                return array(
+			array('archivo', 'length', 'max'=>250),
+                    
+                        //array('archivo', 'file', 'message'=>'Debe ser archivo'),
+                    
+			array('planteamiento, id_area, id_estado, id_competencia, id_desempeno', 'required'),
+			
+                        array('id_estado, id_area, id_tipo_reactivo, id_padre, id_nivel_cognitivo, id_evaluacion, observaciones, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe'),
+                    
+                        array('id_area, id_estado, id_competencia, id_desempeno','compare','compareValue'=>'falso','operator'=>'!=','message'=>'Seleccione un {attribute}.'),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('id, planteamiento, id_estatus_reactivo, id_area, id_tipo_reactivo, id_padre, id_nivel_taxonomico, id_nivel_dificultad, id_evaluacion, base_pregunta, observaciones, archivo, fecha_creacion, fecha_edicion, usuario_creador, usuario_editor, contador_edicion, status', 'safe', 'on'=>'search'),
+		);
+            }
 	}
 
 	/**
@@ -84,21 +112,22 @@ class Reactivo extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'planteamiento' => 'Planteamiento',
-			'id_estatus_reactivo' => 'Id Estatus Reactivo',
-			'id_clasificacion_tematica' => 'Id Clasificacion Tematica',
-			'id_tipo_reactivo' => 'Id Tipo Reactivo',
-			'id_padre' => 'Id Padre',
-			'id_nivel_taxonomico' => 'Id Nivel Taxonomico',
-			'id_nivel_dificultad' => 'Id Nivel Dificultad',
-			'id_evaluacion' => 'Id Evaluacion',
-			'base_pregunta' => 'Base Pregunta',
+			'id_estado' => 'Estado',
+			'id_area' => 'Área',
+			'id_tipo_reactivo' => 'Tipo de reactivo',
+			'id_padre' => 'Id padre',
+			'id_nivel_cognitivo' => 'Nivel cognitivo',
+			'id_competencia' => 'Competencia',
+			'id_desempeno' => 'Desempeño',
+			'id_aprendizaje' => 'Aprendizaje',
+			'id_evaluacion' => 'Evaluación',
 			'observaciones' => 'Observaciones',
 			'archivo' => 'Archivo',
-			'fecha_creacion' => 'Fecha Creacion',
-			'fecha_edicion' => 'Fecha Edicion',
-			'usuario_creador' => 'Usuario Creador',
-			'usuario_editor' => 'Usuario Editor',
-			'contador_edicion' => 'Contador Edicion',
+			'fecha_creacion' => 'Fecha de creación',
+			'fecha_edicion' => 'Fecha de edición',
+			'usuario_creador' => 'Usuario creador',
+			'usuario_editor' => 'Usuario editor',
+			'contador_edicion' => 'Contador de edición',
 			'status' => 'Status',
 		);
 	}
@@ -111,7 +140,7 @@ class Reactivo extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
+                    
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
@@ -132,26 +161,27 @@ class Reactivo extends CActiveRecord
 
 		$criteria->compare('id_evaluacion',$this->id_evaluacion,true);
 
-		$criteria->compare('base_pregunta',$this->base_pregunta,true);
+		//$criteria->compare('base_pregunta',$this->base_pregunta,true);
 
-		$criteria->compare('observaciones',$this->observaciones,true);
+		//$criteria->compare('observaciones',$this->observaciones,true);
 
-		$criteria->compare('archivo',$this->archivo,true);
+		//$criteria->compare('archivo',$this->archivo,true);
 
-		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
+		//$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 
 		$criteria->compare('fecha_edicion',$this->fecha_edicion,true);
 
-		$criteria->compare('usuario_creador',$this->usuario_creador,true);
+		//$criteria->compare('usuario_creador',$this->usuario_creador,true);
 
 		$criteria->compare('usuario_editor',$this->usuario_editor,true);
 
 		$criteria->compare('contador_edicion',$this->contador_edicion,true);
 
-		$criteria->compare('status',$this->status);
+		//$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider('Reactivo', array(
 			'criteria'=>$criteria,
 		));
+
 	}
 }

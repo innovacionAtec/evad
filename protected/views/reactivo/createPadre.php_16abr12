@@ -1,0 +1,24 @@
+<?php $this->pageTitle = CHtml::encode('EVAD | Nuevo reactivo'); ?>
+
+<div class="row">
+    <div class="span5">
+        <ul class="breadcrumb">
+            <li>
+                <a href="<?php echo CController::createUrl('site/index'); ?>">Inicio</a> <span class="divider">/</span>
+            </li>
+            <li>
+                <a href="<?php echo CController::createUrl('reactivo/indexPadre'); ?>">Reactivo padre</a> <span class="divider">/</span>
+            </li>
+            <li class="active">Nuevo</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="span4">
+        <h1>Nuevo reactivo padre</h1>
+    </div>
+</div>
+<?php echo $this->renderPartial('_formPadre', array('model'=>$model,
+                        'clasificacion_tematica'=>$clasificacion_tematica,
+			'estatus_reactivo'=>$estatus_reactivo,
+    )); ?>

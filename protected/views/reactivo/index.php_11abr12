@@ -1,0 +1,144 @@
+<?php
+/*$this->breadcrumbs=array(
+	'Reactivos',
+);
+
+$this->menu=array(
+	array('label'=>'Create Reactivo', 'url'=>array('create')),
+	array('label'=>'Manage Reactivo', 'url'=>array('admin')),
+);*/
+?>
+
+<?php /*
+<h1>Reactivos</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>
+ */ ?>
+
+<?php $this->pageTitle = CHtml::encode('EVAD | Reactivo'); ?>
+<div class="row">
+    <div class="span5">
+        <ul class="breadcrumb">
+            <li>
+                <a href="<?php echo CController::createUrl('site/index'); ?>">Inicio</a> <span class="divider">/</span>
+            </li>
+            <li class="active">Reactivo</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span4">
+        <h1>Reactivo</h1>
+    </div>
+    <!--<div class="span2">
+        <script type="text/javascript">
+            $(function(){ $(".btn")
+                .popover({
+                    offset: 5,
+                    placement: 'right'
+                });
+            });
+        </script>
+        <a href="<?php /*echo CController::createUrl('create');*/ ?>" class="btn btn-success" data-content="Permite agregar un nuevo elemento" rel="popover" data-original-title="Ayuda">
+            <i class="icon-plus-sign icon-white"></i> Agregar
+        </a>
+    </div>-->
+</div>
+
+<?php /*
+<div class="row">
+    <table class="table-bordered table-condensed" style="margin-top:10px">
+        <thead>
+            <tr>
+                <th type="hidden">Id reactivo</th>
+                <th type="hidden">Id padre</th>
+                <th type="hidden">Clasificación temática</th>
+                <th type="hidden">Nivel taxonómico</th>
+                <th type="hidden">Tipo reactivo</th>
+                <th type="hidden">Nivel dificultad</th>
+                <th type="hidden">Estatus</th>
+                <!--<th type="hidden">Pregunta</th>-->
+                <th type="hidden">Respuesta</th>
+                <th type="hidden">Elaborador</th>
+                <th type="hidden">Fecha modificación</th>
+                <th type="hidden">Modificador</th>
+                <!--<th type="hidden">Discriminador</th>-->
+            </tr>
+        </thead>
+*/ ?>
+
+<?php /*
+if(!empty($actividades)) {//valida q haya una o mas actividades
+*/ ?>
+
+<div class="row">
+    <div class="span12">
+        <?php
+        $this->widget('zii.widgets.grid.CGridView', array(
+            'dataProvider' => $dataProvider,
+            'columns'=>array(
+                'id',          // display the 'title' attribute
+                'id_padre',          // display the 'title' attribute
+                array(
+                    'name'=>'id_clasificacion_tematica',
+                    'type' => 'raw',
+                    'value'=>'ClasificacionTematica::model()->findByPK($data->id_clasificacion_tematica)->nombre',
+                ),
+                array(
+                    'name'=>'id_nivel_taxonomico',
+                    'type' => 'raw',
+                    'value'=>'NivelTaxonomico::model()->findByPK($data->id_nivel_taxonomico)->nombre',
+                ),
+                array(
+                    'name'=>'id_tipo_reactivo',
+                    'type' => 'raw',
+                    'value'=>'TipoReactivo::model()->findByPK($data->id_tipo_reactivo)->nombre',
+                ),
+                array(
+                    'name'=>'id_nivel_dificultad',
+                    'type' => 'raw',
+                    'value'=>'NivelDificultad::model()->findByPK($data->id_nivel_dificultad)->nombre',
+                ),
+                array(
+                    'name'=>'id_estatus_reactivo',
+                    'type' => 'raw',
+                    'value'=>'EstatusReactivo::model()->findByPK($data->id_estatus_reactivo)->nombre',
+                ),
+                //'content:html',   // display the 'content' attribute as purified HTML
+                'planteamiento:html',
+                /*'respuesta:html',*/
+                array(
+                    'name'=>"Respuesta",
+                    'type' => 'raw',
+                    'value'=>'Respuesta::model()->find("id_reactivo=:id AND correcta=true", array(
+                            ":id" => $data->id,
+                          ))->argumento',
+                ),
+                array(
+                    'name'=>'usuario_creador',
+                    'type' => 'raw',
+                    'value'=>'Usuario::model()->findByPK($data->usuario_creador)->nombres',
+                ),
+                array(            // display 'create_time' using an expression
+                    'name'=>'fecha_edicion',
+                    'value'=>'date("M j, Y", $data->fecha_edicion)',
+                ),
+                array(
+                    'name'=>'usuario_editor',
+                    'type' => 'raw',
+                    'value'=>'Usuario::model()->findByPK($data->usuario_editor)->nombres',
+                ),
+                /*array(            // display a column with "view", "update" and "delete" buttons
+                    'class'=>'CButtonColumn',
+                ),*/
+            ),
+            /*'itemView' => '_view',*/
+            ));
+        ?>
+    </div>
+</div>
+

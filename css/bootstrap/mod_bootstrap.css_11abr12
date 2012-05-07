@@ -1,0 +1,28 @@
+/* 
+    Document   : mod_bootstrap
+    Created on : 21/03/2012, 04:58:02 PM
+    Author     : jorge
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body { 
+    /*background-color: #28b5db;*/
+}
+
+.content { 
+    /*background-color: #FFFFFF;*/
+    margin-top: 10px;
+}
+
+.footer {
+    border-top: 1px solid #E5E5E5;
+    margin-top: 45px;
+    padding: 35px 0 36px;
+}
+

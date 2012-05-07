@@ -8,6 +8,11 @@ $roles = array();
 foreach ($resultado as $key => $value) {
     $roles[$value->id] = $value->nombre;
 }
+$resultado = area::model()->findAll();
+$area = array();
+foreach ($resultado as $key => $value) {
+    $area[$value->id] = $value->nombre;
+}
 $status = array('falso' => 'Status de aprobación', 'todos' => 'TODOS', '0' => 'Inactivo', '1' => 'Activo');
 ?>
 
@@ -47,6 +52,10 @@ $status = array('falso' => 'Status de aprobación', 'todos' => 'TODOS', '0' => '
             <div class="row">
                 <b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
                 <?php echo $status[$data->status]; ?>
+            </div>
+            <div class="row">
+                <b><?php echo CHtml::encode($data->getAttributeLabel('id_area')); ?>:</b>
+                <?php if($data->id_area)echo $area[$data->id_area]; ?>
             </div>
         </div>
         <div class="span1"><!--28mar12_Cirenia-->

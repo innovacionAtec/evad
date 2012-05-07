@@ -27,10 +27,10 @@ global $Config ;
 // SECURITY: You must explicitly enable this "connector". (Set it to "true").
 // WARNING: don't just set "$Config['Enabled'] = true ;", you must be sure that only
 //		authenticated users can access this file or use some kind of session checking.
-$Config['Enabled'] = false ;
+$Config['Enabled'] = true;
 
 // Path to user files relative to the document root.
-$Config['UserFilesPath'] = '/userfiles/' ;
+$Config['UserFilesPath'] = '/evad/fckeditor/editor/images/images_reactivos/' ;
 
 // Fill the following value it you prefer to specify the absolute path for the
 // user files directory. Useful if you are using a virtual directory, symbolic
@@ -121,18 +121,19 @@ $Config['ChmodOnFolderCreate'] = 0777 ;
 
 $Config['AllowedExtensions']['File']	= array('7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'fla', 'flv', 'gif', 'gz', 'gzip', 'jpeg', 'jpg', 'mid', 'mov', 'mp3', 'mp4', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'pdf', 'png', 'ppt', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'swf', 'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vsd', 'wav', 'wma', 'wmv', 'xls', 'xml', 'zip') ;
 $Config['DeniedExtensions']['File']		= array() ;
-$Config['FileTypesPath']['File']		= $Config['UserFilesPath'] . 'file/' ;
-$Config['FileTypesAbsolutePath']['File']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'].'file/' ;
+$Config['FileTypesPath']['File']		= $Config['UserFilesPath'];
+$Config['FileTypesAbsolutePath']['File']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'];
 $Config['QuickUploadPath']['File']		= $Config['UserFilesPath'] ;
 $Config['QuickUploadAbsolutePath']['File']= $Config['UserFilesAbsolutePath'] ;
 
 $Config['AllowedExtensions']['Image']	= array('bmp','gif','jpeg','jpg','png') ;
 $Config['DeniedExtensions']['Image']	= array() ;
-$Config['FileTypesPath']['Image']		= $Config['UserFilesPath'] . 'image/' ;
-$Config['FileTypesAbsolutePath']['Image']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'].'image/' ;
+$Config['FileTypesPath']['Image']		= $Config['UserFilesPath'];
+$Config['FileTypesAbsolutePath']['Image']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'];
 $Config['QuickUploadPath']['Image']		= $Config['UserFilesPath'] ;
 $Config['QuickUploadAbsolutePath']['Image']= $Config['UserFilesAbsolutePath'] ;
 
+/*
 $Config['AllowedExtensions']['Flash']	= array('swf','flv') ;
 $Config['DeniedExtensions']['Flash']	= array() ;
 $Config['FileTypesPath']['Flash']		= $Config['UserFilesPath'] . 'flash/' ;
@@ -146,5 +147,5 @@ $Config['FileTypesPath']['Media']		= $Config['UserFilesPath'] . 'media/' ;
 $Config['FileTypesAbsolutePath']['Media']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'].'media/' ;
 $Config['QuickUploadPath']['Media']		= $Config['UserFilesPath'] ;
 $Config['QuickUploadAbsolutePath']['Media']= $Config['UserFilesAbsolutePath'] ;
-
+*/
 ?>

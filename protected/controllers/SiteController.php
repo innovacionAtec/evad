@@ -102,8 +102,8 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
                 date_default_timezone_set("America/Mexico_City");
-                $usuario = Usuario::model()->updateByPk(Yii::app()->user->id_usuario,
-	                array('ultimo_login'=>time()));
+                /*$usuario = Usuario::model()->updateByPk(Yii::app()->user->id_usuario,
+	                array('ultimo_login'=>time()));*/
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}

@@ -31,7 +31,8 @@ class UsuarioController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view'),
-                'users' => array('*'),
+                /*'users' => array('*'),*/
+		'users' => array('@'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update'),
@@ -39,7 +40,8 @@ class UsuarioController extends Controller {
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
+                'users' => array('@'),
+                'expression' => 'isset(Yii::app()->user->id_rol) && Yii::app()->user->id_rol==1',
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -75,6 +77,16 @@ class UsuarioController extends Controller {
                 $roles[$value->id] = $value->nombre;
             }
         }
+        
+        $resultado = area::model()->findAll();
+        if ($resultado == null) {
+            $area['falso'] = "Sin resultados";
+        } else {
+            $area['falso'] = "Seleccione una opción";
+            foreach ($resultado as $key => $value) {
+                $area[$value->id] = $value->nombre;
+            }
+        }
 
         if (isset($_POST['Usuario'])) {
             $model->attributes = $_POST['Usuario'];
@@ -91,6 +103,7 @@ class UsuarioController extends Controller {
         $this->render('create', array(
             'model' => $model,
             'roles' => $roles,
+            'area' => $area,
         ));
     }
 
@@ -115,6 +128,16 @@ class UsuarioController extends Controller {
                 $roles[$value->id] = $value->nombre;
             }
         }
+        
+        $resultado = area::model()->findAll();
+        if ($resultado == null) {
+            $area['falso'] = "Sin resultados";
+        } else {
+            $area['falso'] = "Seleccione una opción";
+            foreach ($resultado as $key => $value) {
+                $area[$value->id] = $value->nombre;
+            }
+        }
 
         if (isset($_POST['Usuario'])) {
 
@@ -129,6 +152,7 @@ class UsuarioController extends Controller {
         $this->render('update', array(
             'model' => $model,
             'roles' => $roles,
+            'area' => $area,
         ));
     }
 

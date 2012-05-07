@@ -35,53 +35,102 @@
         </div>
     </div>
     <div class="span5">
-        <div class="row">
-            <?php echo $form->labelEx($model, 'id_estatus_reactivo'); ?>
-            <?php echo $form->dropDownList($model, 'id_estatus_reactivo', $estatus_reactivo); ?>
-            <?php echo $form->error($model, 'id_estatus_reactivo'); ?>
-        </div>
+        <?php if (!isset($_GET['id_padre']) && $model->id_padre==0) { ?>
+        
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_area'); ?>
+                <?php
+                echo $form->dropDownList($model, 'id_area', $area, array(
+                    //'class'=>'',
+                    'id' => 'id_area',
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => CController::createUrl('reactivo/getCompetencias'),
+                        'update' => '#id_competencia'
+                    )
+                ));
+                ?>
+                <?php echo $form->error($model, 'id_area'); ?>
+            </div>
 
-        <div class="row">
-            <?php echo $form->labelEx($model, 'id_clasificacion_tematica'); ?>
-            <?php echo $form->dropDownList($model, 'id_clasificacion_tematica', $clasificacion_tematica); ?>
-            <?php echo $form->error($model, 'id_clasificacion_tematica'); ?>
-        </div>
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_competencia'); ?>
+                <?php
+                echo $form->dropDownList($model, 'id_competencia', $competencia, array(
+                    //'class'=>'',
+                    'id' => 'id_competencia',
+                    'onChange' => 'submit',
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => CController::createUrl('reactivo/getDesempeno'),
+                        'update' => '#id_desempeno'
+                    )
+                ));
+                ?>
+                <?php echo $form->error($model, 'id_competencia'); ?>
+            </div>
 
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_desempeno'); ?>
+                <?php
+                echo $form->dropDownList($model, 'id_desempeno', $desempeno, array(
+                    //'class'=>'',
+                    'id' => 'id_desempeno',
+                    'onChange' => 'submit',
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => CController::createUrl('reactivo/getAprendizaje'),
+                        'update' => '#id_aprendizaje'
+                    )
+                ));
+                ?>
+                <?php echo $form->error($model, 'id_competencia'); ?>
+            </div>
+
+            <!--<div class="row">
+                <?php /*echo $form->labelEx($model, 'id_competencia'); ?>
+                <?php echo $form->dropDownList($model, 'id_competencia', $competencia, array('id' => 'id_competencia')); ?>
+                <?php echo $form->error($model, 'id_competencia'); ?>
+            </div>-->
+
+            <!--<div class="row">
+                <?php echo $form->labelEx($model, 'id_desempeno'); ?>
+                <?php echo $form->dropDownList($model, 'id_desempeno', $desempeno, array('id' => 'id_desempeno')); ?>
+                <?php echo $form->error($model, 'id_desempeno');*/ ?>
+            </div>-->
+        
+        <?php } ?>
+        
+            
+        <?php if (!isset($_GET['id_padre']) && $model->id_padre==0) { ?>
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_aprendizaje'); ?>
+                <?php echo $form->dropDownList($model, 'id_aprendizaje', $aprendizaje, array('id' => 'id_aprendizaje')); ?>
+                <?php echo $form->error($model, 'id_aprendizaje'); ?>
+            </div>
+        <?php } else { ?>
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_aprendizaje'); ?>
+                <?php echo $form->dropDownList($model, 'id_aprendizaje', $aprendizaje); ?>
+                <?php echo $form->error($model, 'id_aprendizaje'); ?>
+            </div>
+        <?php } ?>
+        
         <!--<div class="row">
-            <?php echo $form->labelEx($model, 'id_tipo_reactivo'); ?>
-            <?php echo $form->dropDownList($model, 'id_tipo_reactivo', $tipo_reactivo); ?>
-            <?php echo $form->error($model, 'id_tipo_reactivo'); ?>
+            <?php /*echo $form->labelEx($model, 'id_nivel_cognitivo'); ?>
+            <?php echo $form->dropDownList($model, 'id_nivel_cognitivo', $nivel_cognitivo); ?>
+            <?php echo $form->error($model, 'id_nivel_cognitivo');*/ ?>
         </div>-->
-
-        <!--<div class="row">
-        <?php echo $form->labelEx($model, 'id_padre'); ?>
-        <?php echo $form->textField($model, 'id_padre'); ?>
-        <?php echo $form->error($model, 'id_padre'); ?>
-        </div>-->
-
-        <div class="row">
-            <?php echo $form->labelEx($model, 'id_nivel_taxonomico'); ?>
-            <?php echo $form->dropDownList($model, 'id_nivel_taxonomico', $nivel_taxonomico); ?>
-            <?php echo $form->error($model, 'id_nivel_taxonomico'); ?>
-        </div>
-
-        <div class="row">
-            <?php echo $form->labelEx($model, 'id_nivel_dificultad'); ?>
-            <?php echo $form->dropDownList($model, 'id_nivel_dificultad', $nivel_dificultad); ?>
-            <?php echo $form->error($model, 'id_nivel_dificultad'); ?>
-        </div>
-
-        <!--<div class="row">
-        <?php echo $form->labelEx($model, 'id_evaluacion'); ?>
-        <?php echo $form->dropDownList($model, 'id_evaluacion', $evaluacion); ?>
-        <?php echo $form->error($model, 'id_evaluacion'); ?>
-        </div>-->
-
-        <!--<div class="row">
-        <?php echo $form->labelEx($model, 'base_pregunta'); ?>
-        <?php echo $form->textField($model, 'base_pregunta'); ?>
-        <?php echo $form->error($model, 'base_pregunta'); ?>
-        </div>-->
+        
+        <?php if (!isset($_GET['id_padre']) && $model->id_padre==0) { ?>
+        
+            <div class="row">
+                <?php echo $form->labelEx($model, 'id_estado'); ?>
+                <?php echo $form->dropDownList($model, 'id_estado', $estado); ?>
+                <?php echo $form->error($model, 'id_estado'); ?>
+            </div>
+        
+        <?php } ?>
 
         <div class="row">
             <?php echo $form->labelEx($model, 'archivo'); ?>
@@ -89,52 +138,17 @@
             <?php echo $form->error($model, 'archivo'); ?>
         </div>
         
-        <?php if (!$model->isNewRecord) { ?>
+        <?php if (!$model->isNewRecord && (isset(Yii::app()->user->id_rol) && Yii::app()->user->id_rol<=2)) { ?>
 
-        <div class="row">
-            <?php echo $form->labelEx($model, 'observaciones'); ?>
-            <?php echo $form->textArea($model, 'observaciones'); ?>
-            <?php echo $form->error($model, 'observaciones'); ?>
-        </div>
+            <div class="row">
+                <?php echo $form->labelEx($model, 'observaciones'); ?>
+                <?php echo $form->textArea($model, 'observaciones'); ?>
+                <?php echo $form->error($model, 'observaciones'); ?>
+            </div>
 
         <?php } ?>
     </div>
 
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'fecha_creacion'); ?>
-    <?php echo $form->textField($model, 'fecha_creacion'); ?>
-    <?php echo $form->error($model, 'fecha_creacion'); ?>
-    </div>-->
-
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'fecha_edicion'); ?>
-    <?php echo $form->textField($model, 'fecha_edicion'); ?>
-    <?php echo $form->error($model, 'fecha_edicion'); ?>
-    </div>-->
-
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'usuario_creador'); ?>
-    <?php echo $form->textField($model, 'usuario_creador'); ?>
-    <?php echo $form->error($model, 'usuario_creador'); ?>
-    </div>-->
-
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'usuario_editor'); ?>
-    <?php echo $form->textField($model, 'usuario_editor'); ?>
-    <?php echo $form->error($model, 'usuario_editor'); ?>
-    </div>-->
-
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'contador_edicion'); ?>
-    <?php echo $form->textField($model, 'contador_edicion'); ?>
-    <?php echo $form->error($model, 'contador_edicion'); ?>
-    </div>-->
-
-    <!--<div class="row">
-    <?php echo $form->labelEx($model, 'status'); ?>
-    <?php echo $form->checkBox($model, 'status'); ?>
-    <?php echo $form->error($model, 'status'); ?>
-    </div>-->
     </div>
     
     <hr />
@@ -169,50 +183,6 @@
     			) ); ?>
             </div>
             <?php } ?>
-            <div id="link_mas">
-                <span class="label label-info">Añadir más</span>
-            </div>
-            <div  id="mas">
-                <?php for($i=5;$i<=7;$i++){ ?>
-                <div class="row">
-                    <?php echo $form->radioButton($respuesta,'correcta', array('value'=>$i, 'uncheckValue'=>null)); ?>
-                    <?php echo CHtml::label('Respuesta ' . $i, 'respuesta['.$i.']'); ?>
-                    <?php /*echo $form->textArea($respuesta,'argumento['.$i.']', array('rows' => 6, 'style' => 'width:90%; max-width:100%;'));*/ ?>
-                    <?php $this->widget('application.extensions.fckeditor.FCKEditorWidget',array(
-		    //"model"=>$respuesta,                # Data-Model
-		    //"attribute"=>'argumento['.$i.']',         # Attribute in the Data-Model
-		    "name"=>'Respuesta[argumento]['.$i.']',         # Solo pone nombre
-		    "value"=>$respuesta->argumento[$i],
-                    "height"=>'200px',
-		    "width"=>'100%',
-		    "toolbarSet"=>'Default',          # EXISTING(!) Toolbar (see: fckeditor.js)
-		    "fckeditor"=>Yii::app()->basePath."/../fckeditor/fckeditor.php",
-                                    # Path to fckeditor.php
-		    "fckBasePath"=>Yii::app()->baseUrl."/fckeditor/",
-                                    # Realtive Path to the Editor (from Web-Root)
-		    "config" => array(
-		        "EditorAreaCSS"=>Yii::app()->baseUrl.'/css/index.css',),
-                                                                   
-    			) ); ?>
-                </div>
-                <?php } ?>
-            </div>
-            <?php if(empty($respuesta->argumento[5]) && empty($respuesta->argumento[6]) && empty($respuesta->argumento[7])){ ?>
-            <script type="text/javascript">
-                $('#mas').hide();
-            </script>
-            <?php } else{ ?>
-                <script type="text/javascript">
-                $('#link_mas').hide();
-            </script>
-            <?php } ?>
-            <script type="text/javascript">
-                //$('#mas').hide();
-                $('#link_mas').click(function() {
-                  $('#mas').toggle();
-                  $('#link_mas').toggle();
-                }); 
-            </script>
         </div>
     </div>
     
@@ -221,6 +191,11 @@
     <div class="row" style="margin-top:20px">
         <div class="span12" style="text-align: center;">
             <button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i> Guardar</button>
+            <?php if (!$model->isNewRecord) { ?>
+                <a href="<?php echo CController::createUrl('view', array('reactivo/view', 'id'=>$model->id)); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</a>
+            <?php } else { ?>
+                <a href="<?php echo CController::createUrl('index'); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</a>
+            <?php } ?>
         </div>
     </div>
 

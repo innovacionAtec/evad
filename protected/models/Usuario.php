@@ -44,11 +44,13 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, id_rol', 'required'),
+			array('email, id_rol, apellido_paterno, apellido_materno, nombres, id_area', 'required'),
 			array('email', 'length', 'max'=>100),
 			array('password', 'length', 'max'=>32),
 			array('apellido_paterno, apellido_materno, nombres', 'length', 'max'=>25),
 			array('fecha_creacion, fecha_edicion, ultimo_login, ultimo_logout, status', 'safe'),
+                    
+                        array('id_area, id_rol','compare','compareValue'=>'falso','operator'=>'!=','message'=>'Seleccione un {attribute}.'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, email, password, id_rol, apellido_paterno, apellido_materno, nombres, fecha_creacion, fecha_edicion, ultimo_login, ultimo_logout, status', 'safe', 'on'=>'search'),
@@ -75,7 +77,8 @@ class Usuario extends CActiveRecord
 			'id' => 'Id',
 			'email' => 'Email',
 			'password' => 'Password',
-			'id_rol' => 'Id Rol',
+			'id_rol' => 'Rol',
+			'id_area' => 'Area',
 			'apellido_paterno' => 'Apellido Paterno',
 			'apellido_materno' => 'Apellido Materno',
 			'nombres' => 'Nombres',

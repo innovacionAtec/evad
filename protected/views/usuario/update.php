@@ -38,6 +38,6 @@ $this->menu=array(
 
 <div class="row">
     <div class="span9 offset1">
-        <?php echo $this->renderPartial('_form', array('model'=>$model, 'roles'=>$roles)); ?>
+        <?php echo $this->renderPartial('_form', array('model'=>$model, 'roles'=>$roles, 'area' => $area)); ?>
     </div>
 </div>

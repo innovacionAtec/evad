@@ -63,10 +63,11 @@ return array(
 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'pgsql:host=localhost;dbname=evad',
+		
+                'connectionString' => 'pgsql:host=localhost;dbname=evad',
 	        	'emulatePrepare' => true,
 		        'username' => 'postgres',
-        	    	'password' => 'patz32',
+        	    	'password' => "patz32",
         	    	'charset' => 'utf8',
 		),
 		//HUGO
@@ -78,6 +79,7 @@ return array(
         	    	'password' => 'real2375',
         	   	'charset' => 'utf8',
 		),
+
                 /*
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
