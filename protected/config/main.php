@@ -64,19 +64,19 @@ return array(
 		// uncomment the following to use a MySQL database
 		'db'=>array(
 		
-                'connectionString' => 'pgsql:host=localhost;dbname=evad',
+                'connectionString' => 'pgsql:',
 	        	'emulatePrepare' => true,
-		        'username' => 'postgres',
-        	    	'password' => "patz32",
+		        'username' => '',
+        	    	'password' => "",
         	    	'charset' => 'utf8',
 		),
 		//HUGO
         	'db2'=>array(
         	    	'class' => 'CDbConnection',
-        	   	'connectionString' => 'pgsql:host=10.12.0.25;dbname=biblioteca',
+        	   	'connectionString' => 'pgsql:',
         	     	'emulatePrepare' => true,
-        	  	'username' => 'jorge',
-        	    	'password' => 'real2375',
+        	  	'username' => '',
+        	    	'password' => '',
         	   	'charset' => 'utf8',
 		),
 
